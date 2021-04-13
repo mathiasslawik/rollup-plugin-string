@@ -23,15 +23,19 @@ rollup({
   entry: "main.js",
   plugins: [
     string({
-      // Required to be specified
+      // Required. Only process files matching this minimatch pattern.
       include: "**/*.html",
 
-      // Undefined by default
+      // Optional (default: undefined). Exclude these files from being processed.
       exclude: ["**/index.html"]
     })
   ]
 });
 ```
+
+The `include` and `exclude` parameters are passed to the [createFilter](https://github.com/rollup/rollup-pluginutils#createfilter) method of rollup-pluginutils.
+
+Note: relative paths are resolved against `process.cwd()`, i.e., the current working directory. Keep this in mind when working, e.g., within monorepos.
 
 # License
 
